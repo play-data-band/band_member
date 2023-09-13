@@ -29,8 +29,7 @@ public class ReserveController {
         reserveService.deleteById(userId, communityId);
     }
 
-
-    @PatchMapping("{communityId}")
+    @PutMapping("{communityId}")
     public void updateById(@PathVariable Long communityId, @RequestBody ReserveUpdateRequest request){
         reserveService.updateById(communityId,request);
     }

@@ -35,7 +35,7 @@ public class ReserveService {
 
     @Transactional
     public void updateById(Long communityId, ReserveUpdateRequest reserveUpdateRequest){
-        reserveRepository.update(communityId, reserveUpdateRequest.getCommunityImgPath(), reserveUpdateRequest.getCommunityName());
+        reserveRepository.updateReserve(reserveUpdateRequest,communityId);
 
     }
 

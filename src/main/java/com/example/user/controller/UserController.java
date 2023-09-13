@@ -2,7 +2,7 @@ package com.example.user.controller;
 
 import com.example.user.config.JwtService;
 import com.example.user.config.TokenInfo;
-import com.example.user.domain.entity.User;
+
 import com.example.user.domain.request.LoginRequest;
 import com.example.user.domain.request.SignupRequest;
 import com.example.user.domain.response.LoginResponse;
@@ -46,4 +46,9 @@ public class UserController {
         System.out.println(tokenInfo.getId());
         return userService.getMe(tokenInfo.getId());
     }
+
+//    @PatchMapping("/me")
+//    public void userUpdate(
+//
+//    )
 }
