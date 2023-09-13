@@ -1,8 +1,7 @@
 package com.example.user.controller;
 
-import com.example.user.domain.entity.Reserve;
 import com.example.user.domain.request.ReserveRequest;
-import com.example.user.domain.request.UpdateRequest;
+import com.example.user.domain.request.ReserveUpdateRequest;
 import com.example.user.domain.response.ReserveResponse;
 import com.example.user.service.ReserveService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +31,7 @@ public class ReserveController {
 
 
     @PatchMapping("{communityId}")
-    public void updateById(@PathVariable Long communityId, @RequestBody UpdateRequest request){
+    public void updateById(@PathVariable Long communityId, @RequestBody ReserveUpdateRequest request){
         reserveService.updateById(communityId,request);
     }
 }

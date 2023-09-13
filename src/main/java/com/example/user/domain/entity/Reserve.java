@@ -1,6 +1,5 @@
 package com.example.user.domain.entity;
 
-import com.example.user.domain.request.UpdateRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateRequest {
+public class ReserveUpdateRequest {
     private String communityName;
     private String communityImgPath;
 }

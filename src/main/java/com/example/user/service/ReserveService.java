@@ -2,14 +2,13 @@ package com.example.user.service;
 
 import com.example.user.domain.entity.Reserve;
 import com.example.user.domain.request.ReserveRequest;
-import com.example.user.domain.request.UpdateRequest;
+import com.example.user.domain.request.ReserveUpdateRequest;
 import com.example.user.domain.response.ReserveResponse;
 import com.example.user.repository.ReserveRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -35,8 +34,8 @@ public class ReserveService {
     }
 
     @Transactional
-    public void updateById(Long communityId, UpdateRequest updateRequest){
-        reserveRepository.update(communityId,updateRequest.getCommunityImgPath(),updateRequest.getCommunityName());
+    public void updateById(Long communityId, ReserveUpdateRequest reserveUpdateRequest){
+        reserveRepository.update(communityId, reserveUpdateRequest.getCommunityImgPath(), reserveUpdateRequest.getCommunityName());
 
     }
 
