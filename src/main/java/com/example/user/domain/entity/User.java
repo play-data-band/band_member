@@ -16,7 +16,7 @@ public class User {
     private String password;
     private String mbti;
     private LocalDateTime createdAt;
-    //private String imgPath;
+    private String imgPath;
 
     @OneToMany(mappedBy = "user")
     private List<Interest> interest;

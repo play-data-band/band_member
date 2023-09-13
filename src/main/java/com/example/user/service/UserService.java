@@ -41,11 +41,27 @@ public class UserService {
         return ResponseEntity.ok(new RestResult<>("success","회원가입이 완료 되었습니다."));
     }
 
-    public LoginResponse login(LoginRequest request){
+    public ResponseEntity<RestResult<Object>> login(LoginRequest request){
         Optional<User> byEmailAndPassword = userRepository.findByEmailAndPassword(request.getEmail(), request.getPassword());
-        User user = byEmailAndPassword.orElseThrow(() -> new IllegalArgumentException("NOT FOUND"));
-        String s = jwtService.makeToken(user);
-        return new LoginResponse(s);
+
+        if (!byEmailAndPassword.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new RestResult<>("BAD_REQUEST",new RestError("BAD_REQUEST","존재하지 않는 정보입니다.")));
+        }
+
+
+        String s = jwtService.makeToken(byEmailAndPassword.get());
+
+        LoginResponse loginResponse = LoginResponse.builder()
+                .token(s)
+                .email(byEmailAndPassword.get().getEmail())
+                .username(byEmailAndPassword.get().getName())
+                .mbti(byEmailAndPassword.get().getMbti())
+                .profileImgPath(byEmailAndPassword.get().getImgPath())
+                .userId(byEmailAndPassword.get().getId())
+                .build();
+
+        return ResponseEntity.ok(new RestResult<>("success",loginResponse));
     }
 
     public UserResponse getMe(Long id){

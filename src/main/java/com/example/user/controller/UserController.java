@@ -41,7 +41,7 @@ public class UserController {
     //로그인
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public LoginResponse login(@RequestBody LoginRequest request){
+    public ResponseEntity<RestResult<Object>> login(@RequestBody LoginRequest request){
         return userService.login(request);
     }
 

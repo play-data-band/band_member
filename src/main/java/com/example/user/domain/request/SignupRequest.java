@@ -13,7 +13,7 @@ public class SignupRequest {
     private String password;
     private String name;
     private String mbti;
-    //private String imgPath;
+    private String imgPath;
 
     public User toEntity(){
          return User
@@ -22,7 +22,7 @@ public class SignupRequest {
                 .password(password)
                 .name(name)
                 .mbti(mbti)
-                //.imgPath(imgPath)
+                .imgPath(imgPath)
                  .createdAt(LocalDateTime.now())
                 .build();
     }
