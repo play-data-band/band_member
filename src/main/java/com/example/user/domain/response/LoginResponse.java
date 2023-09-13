@@ -1,8 +1,11 @@
 package com.example.user.domain.response;
 
+import com.example.user.domain.entity.Interest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -14,4 +17,5 @@ public class LoginResponse {
     private String profileImgPath;
     private String mbti;
     private Long userId;
+    private List<Interest> interests;
 }

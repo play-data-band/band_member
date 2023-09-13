@@ -36,9 +36,9 @@ public class UserService {
                     .body(new RestResult<>("CONFLICT",new RestError("EMAIL_CONFLICT","이미 존재하는 이메일 입니다.")));
        }
 
-        userRepository.save(request.toEntity());
+        User save = userRepository.save(request.toEntity());
 
-        return ResponseEntity.ok(new RestResult<>("success","회원가입이 완료 되었습니다."));
+        return ResponseEntity.ok(new RestResult<>("success", save.getId()));
     }
 
     public ResponseEntity<RestResult<Object>> login(LoginRequest request){
@@ -48,6 +48,8 @@ public class UserService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new RestResult<>("BAD_REQUEST",new RestError("BAD_REQUEST","존재하지 않는 정보입니다.")));
         }
+
+        List<Interest> interests = interestRepository.findInterestsByUserId(byEmailAndPassword.get().getId());
 
 
         String s = jwtService.makeToken(byEmailAndPassword.get());
@@ -59,6 +61,7 @@ public class UserService {
                 .mbti(byEmailAndPassword.get().getMbti())
                 .profileImgPath(byEmailAndPassword.get().getImgPath())
                 .userId(byEmailAndPassword.get().getId())
+                .interests(interests)
                 .build();
 
         return ResponseEntity.ok(new RestResult<>("success",loginResponse));

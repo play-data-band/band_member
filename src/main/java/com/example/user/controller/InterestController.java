@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/{userId}/interest")
+@RequestMapping("/api/v1/interest/{userId}")
 public class InterestController {
     private final InterestService interestService;
 

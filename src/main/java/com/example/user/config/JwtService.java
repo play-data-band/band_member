@@ -22,6 +22,7 @@ public class JwtService {
         claims.put("name",user.getName());
         claims.put("mbti",user.getMbti());
         //claims.put("imgPath",user.getImgPath());
+        System.out.println(user.getInterest());
         claims.put("interest",user.getInterest());
 
         return Jwts.builder()
