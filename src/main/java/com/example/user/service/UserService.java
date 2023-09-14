@@ -1,13 +1,14 @@
 package com.example.user.service;
 
+import com.example.user.api.AlbumClient;
+import com.example.user.api.BoardClient;
+import com.example.user.api.CommunityMemberClient;
 import com.example.user.common.RestError;
 import com.example.user.common.RestResult;
 import com.example.user.config.JwtService;
 import com.example.user.domain.entity.Interest;
 import com.example.user.domain.entity.User;
-import com.example.user.domain.request.LoginRequest;
-import com.example.user.domain.request.SignupRequest;
-import com.example.user.domain.request.TeacherRequest;
+import com.example.user.domain.request.*;
 import com.example.user.domain.response.LoginResponse;
 import com.example.user.domain.response.UserResponse;
 import com.example.user.repository.InterestRepository;
@@ -24,8 +25,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final InterestRepository interestRepository;
+    private final CommunityMemberClient communityMemberClient;
     private final JwtService jwtService;
+    private final AlbumClient albumClient;
+    private final BoardClient boardClient;
 
     //중복이메일 검사 후 회원가입
     public ResponseEntity<RestResult<Object>> signupCheck(SignupRequest request) {
@@ -78,6 +81,20 @@ public class UserService {
         }
 
         return ResponseEntity.ok(new RestResult<>("SUCCESS","존재하지 않는 회원 입니다."));
+    }
+
+    public void updateUser(Long id, SignupRequest request){
+        userRepository.updateUser(id, request);
+        communityMemberClient.updateMemberInCommunityMember(new CommunityMemberRequest(id,null
+                , request.getName(), request.getImgPath(), null,null
+
+        ),id);
+        albumClient.memberUpdateInAlbum(id,new AlbumUpdateRequest(
+                request.getName(), request.getImgPath()
+        ));
+        boardClient.updateMemberBoard(id,new AlbumUpdateRequest(
+                request.getName(), request.getImgPath()
+        ));
     }
 
     //회원가입

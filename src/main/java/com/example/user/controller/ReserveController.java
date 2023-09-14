@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/reserve")
+@RequestMapping("/api/v1/bandMember/reserve")
 public class ReserveController {
     private final ReserveService reserveService;
     @PostMapping("{userId}")
