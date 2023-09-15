@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CommunityMemberClient {
     @PutMapping("/api/v1/communitymember/updatemember/{memberId}")
     void updateMemberInCommunityMember(
-            @RequestBody CommunityMemberRequest communityMemberReqeust,
+            @RequestBody CommunityMemberRequest communityMemberRequest,
             @PathVariable("memberId") Long memberId
     );
 }
