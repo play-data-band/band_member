@@ -1,9 +1,6 @@
 package com.example.user.service;
 
-import com.example.user.api.AlbumClient;
-import com.example.user.api.BoardClient;
-import com.example.user.api.ChattingClient;
-import com.example.user.api.CommunityMemberClient;
+import com.example.user.api.*;
 import com.example.user.common.RestError;
 import com.example.user.common.RestResult;
 import com.example.user.config.JwtService;
@@ -29,6 +26,7 @@ public class UserService {
     private final AlbumClient albumClient;
     private final BoardClient boardClient;
     private final ChattingClient chattingClient;
+    private final ScheduleClient scheduleClient;
 
     //중복이메일 검사 후 회원가입
     public ResponseEntity<RestResult<Object>> signupCheck(SignupRequest request) {
@@ -98,6 +96,9 @@ public class UserService {
                 request.getName(), request.getImgPath()
         ));
         chattingClient.updateMember(id, new AlbumUpdateRequest(
+                request.getName(), request.getImgPath()
+        ));
+        scheduleClient.updateMemberBoard(id, new AlbumUpdateRequest(
                 request.getName(), request.getImgPath()
         ));
     }
