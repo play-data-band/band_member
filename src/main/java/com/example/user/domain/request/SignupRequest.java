@@ -14,6 +14,7 @@ public class SignupRequest {
     private String name;
     private String mbti;
     private String imgPath;
+    private String birthDay;
 
     public User toEntity(){
          return User
@@ -21,6 +22,7 @@ public class SignupRequest {
                 .email(email)
                 .password(password)
                 .name(name)
+                 .birthDay(birthDay)
                 .mbti(mbti)
                 .imgPath(imgPath)
                  .createdAt(LocalDateTime.now())

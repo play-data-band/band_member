@@ -17,6 +17,7 @@ public class User {
     private String mbti;
     private LocalDateTime createdAt;
     private String imgPath;
+    private String birthDay;
 
     @OneToMany(mappedBy = "user")
     private List<Interest> interest;

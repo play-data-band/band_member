@@ -15,12 +15,14 @@ public class UserResponse {
     private String name;
     private String email;
     private String mbti;
+    private String birthDay;
     private List<InterestDto> interest;
 
     public UserResponse(User u){
         this.name=u.getName();
         this.email=u.getEmail();
         this.mbti=u.getMbti();
+        this.birthDay = u.getBirthDay();
         this.interest=u.getInterest().stream()
                 .map(interest1 -> new InterestDto(interest1))
                 .toList();
