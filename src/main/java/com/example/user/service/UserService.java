@@ -27,6 +27,7 @@ public class UserService {
     private final BoardClient boardClient;
     private final ChattingClient chattingClient;
     private final ScheduleClient scheduleClient;
+    private final CommentClient commentClient;
 
     //중복이메일 검사 후 회원가입
     public ResponseEntity<RestResult<Object>> signupCheck(SignupRequest request) {
@@ -101,6 +102,8 @@ public class UserService {
         scheduleClient.updateMemberBoard(id, new AlbumUpdateRequest(
                 request.getName(), request.getImgPath()
         ));
+        commentClient.updateComment(id ,new AlbumUpdateRequest(
+                request.getName(), request.getImgPath()));
     }
 
     //회원가입
