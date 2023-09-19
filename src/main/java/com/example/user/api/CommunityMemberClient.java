@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("communitymember-service")
+@FeignClient("BAND-COMMUNITY-MEMBER-SERVICE")
 public interface CommunityMemberClient {
     @PutMapping("/api/v1/communitymember/updatemember/{memberId}")
     void updateMemberInCommunityMember(

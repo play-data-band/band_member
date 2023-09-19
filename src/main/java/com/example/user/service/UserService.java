@@ -92,22 +92,47 @@ public class UserService {
     @Transactional
     public void updateUser(Long id, SignupRequest request){
         userRepository.updateUser(id, request);
+
         communityMemberClient.updateMemberInCommunityMember(new CommunityMemberRequest(id,null
                 , request.getName(), request.getImgPath(), null,null
-
         ),id);
+
         albumClient.memberUpdateInAlbum(id,new AlbumUpdateRequest(
                 request.getName(), request.getImgPath()
         ));
+
         boardClient.updateMemberBoard(id,new AlbumUpdateRequest(
                 request.getName(), request.getImgPath()
         ));
-        chattingClient.updateMember(id, new AlbumUpdateRequest(
-                request.getName(), request.getImgPath()
-        ));
+
         scheduleClient.updateMemberBoard(id, new AlbumUpdateRequest(
                 request.getName(), request.getImgPath()
         ));
+//        chattingClient.updateMember(id, new AlbumUpdateRequest(
+//                request.getName(), request.getImgPath()
+//        ));
+
+    }
+
+    public LoginResponse teacherAccountInfo(String email) {
+        Optional<User> byEmail = userRepository.findByEmail(email);
+
+        List<Interest> interests = interestRepository.findInterestsByUserId(byEmail.get().getId());
+
+        String s = jwtService.makeToken(byEmail.get());
+
+        LoginResponse loginResponse = LoginResponse.builder()
+                .token(s)
+                .email(byEmail.get().getEmail())
+                .username(byEmail.get().getName())
+                .mbti(byEmail.get().getMbti())
+                .profileImgPath(byEmail.get().getImgPath())
+                .userId(byEmail.get().getId())
+                .interests(interests)
+                .username(byEmail.get().getName())
+                .build();
+
+        return loginResponse;
     }
 
     //회원가입

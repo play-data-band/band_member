@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("album-service")
+@FeignClient("BAND-ALBUM-SERVICE")
 public interface AlbumClient {
     @PutMapping("api/v1/album/memberid/{memberId}")
     void memberUpdateInAlbum(

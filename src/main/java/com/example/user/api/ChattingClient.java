@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("CHATTING-SERVICE")
+@FeignClient("BAND-CHATTING-SERVICE")
 public interface ChattingClient {
     @PutMapping("/api/v1/chattings/memberupdate/{memberId}")
     void updateMember(@PathVariable("memberId")Long memberId,

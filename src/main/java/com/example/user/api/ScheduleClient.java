@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("schedule-Service")
+@FeignClient("BAND-SCHEDULE-SERVICE")
 public interface ScheduleClient {
     @PutMapping("/api/v1/schedule/updatemember/{memberId}")
     void updateMemberBoard(@PathVariable("memberId") Long memberId,

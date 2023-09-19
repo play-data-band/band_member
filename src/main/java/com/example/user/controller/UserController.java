@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 //@CrossOrigin(originPatterns = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/v1/bandMember/user")
+@RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 
 public class UserController {
@@ -45,6 +45,11 @@ public class UserController {
         return userService.login(request);
     }
 
+    @GetMapping("/teacherAccountInfo/{userEmail}")
+    public LoginResponse teacherAccountInfo(@PathVariable String userEmail) {
+        return userService.teacherAccountInfo(userEmail);
+    }
+
     @GetMapping("/me")
     public void getMe(@RequestHeader(name = "Authorization") String token1){
         String token=token1.replace("Bearer ", "");
@@ -58,9 +63,8 @@ public class UserController {
     public void updateUser(@RequestHeader(name = "Authorization") String token1, @RequestBody SignupRequest request){
         String token = token1.replace("Bearer", "");
         TokenInfo tokenInfo = jwtService.parseToken(token);
+        System.out.println(tokenInfo.getId());
         userService.updateUser(tokenInfo.getId(), request);
-
-
     }
 
 
